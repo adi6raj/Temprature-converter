@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            background-color: #60a2c9;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            background-color: #202c33;
+            margin-top: 50px;
+            height: 550px;
+            border-radius: 20%;
+            box-sizing: border-box;
+
+        }
+        .container h1
+        {
+            position: absolute;
+            top: 10%;
+            left: 33%;
+            font-size:40px;
+            color: white;
+        }
+        input[type="number"] {
+            position: absolute;
+            top: 30%;
+            left: 39%;
+            width: 135px;
+            padding: 5px;
+        }
+        button {
+            position: absolute;
+            top: 37%;
+            right: 40%;
+            width: 25%;
+            height:6%;
+            border-radius: 10%;
+            padding: 5px 10px;
+            background-color: #404e57;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            position: relative;
+            top: 49%;
+            color: wheat;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #unit
+        {
+            position: absolute;
+            top: 31%;
+            left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        
+        <input type="number" id="temperature" placeholder="Enter temperature">
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temperatureInput = document.getElementById("temperature");
+            const unitSelect = document.getElementById("unit");
+            const resultText = document.getElementById("result");
+
+            const temperature = parseFloat(temperatureInput.value);
+            const unit = unitSelect.value;
+
+            if (isNaN(temperature)) {
+                resultText.textContent = "Please enter a valid number.";
+                return;
+            }
+
+            if (unit === "celsius") {
+                const fahrenheit = (temperature * 9/5) + 32;
+                resultText.textContent = `${temperature} Celsius is ${fahrenheit.toFixed(2)} Fahrenheit.`;
+            } else if (unit === "fahrenheit") {
+                const celsius = (temperature - 32) * 5/9;
+                resultText.textContent = `${temperature} Fahrenheit is ${celsius.toFixed(2)} Celsius.`;
+            }
+        }
+    </script>
+</body>
+</html>
